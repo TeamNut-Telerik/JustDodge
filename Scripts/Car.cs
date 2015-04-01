@@ -2,21 +2,16 @@
 {
 	using UnityEngine;
 	using System.Collections;
-    using Assets.Scripts;
-    using Assets.Scripts.Enumerations;
 
-	public class Car : Vehicle
+	public class Car : MonoBehaviour , ICar
 	{
-
-		//Animations for the car
-		public AnimationClip MoveCarLeft;
-
-
 		// This variable declares how much distance will the car move left or right
 		private static float MoveLengthByX = 6.0f;
 		private const float acceleration = 0.02f;
 
 		// This variable helps us move the car properly so it doesnt get out of the road
+		// For example : It starts at 1 because it is in the middle lane. 
+		// It is equal to 0 if it goes to left lane and it is equal to 2 when it goes to right lane
 		private int PositionOnRoad = 1;
 
 		// This variable will keep the score
@@ -28,6 +23,10 @@
 		// The speed with which the car moves
 	    public float Speed { get; set; }
 
+		// This variable is used for determing whether we can move the car or not
+		// because if the animation is not over it must not move anywhere
+		bool canMove = true;
+
 		//These variables will be used for the bonuses we take
 
 		private bool canDie;  // Undead bonus
@@ -35,7 +34,7 @@
 		private float maximumTimeUndead;
 
 		// The position we will set to the car
-	    public override Vector3 Position { get; set; }
+	    public Vector3 Position { get; set; }
 
 		public float minSpeed {get; set;}
 		public float maxSpeed {get; set;}
@@ -63,12 +62,6 @@
 			get {return this.maximumTimeUndead;}
 			set {this.maximumTimeUndead = value;}
 		}
-
-        public Car(EManufacturer manufacturer, float maxSpeed, float price, EColor color)
-            :base(manufacturer,maxSpeed,price,color)
-        {
-
-        }
 		// Use this like it is the constructor of the class
 		void Start () 
 	    {
@@ -81,10 +74,6 @@
 			this.canDie = true;
 			this.timeUndead = 0;
 			this.maximumTimeUndead = 7f;
-            this.Manufacturer = EManufacturer.BMW;
-            this.MaxSpeed = 320;
-            this.Price = 7000;
-            this.Color = EColor.Blue;
 		}
 
 		// Update is called once per frame
@@ -121,7 +110,7 @@
 			}
 			if (this.canDie == false)
 			{
-				this.timeUndead += Time.deltaTime;
+				this.timeUndead += Time.deltaTime;//0.02f;
 				if (this.timeUndead > this.maximumTimeUndead) 
 				{
 					this.canDie = true;
@@ -130,17 +119,17 @@
 
 			this.Score += this.Speed;
 
-			this.gameObject.transform.position = this.Position;
+			gameObject.transform.position = this.Position;
 		}
 
 		//Check for all collisions possible
 		void OnTriggerEnter(Collider col)
 		{
-			if (col.gameObject.tag == "EnemyCar" && this.canDie) 
+			if (col.gameObject.tag == "EnemyCar" && canDie) 
 			{
 				Application.LoadLevel(Application.loadedLevel);
 			}
-			else if(col.gameObject.tag == "EnemyCar" && !this.canDie)
+			else if(col.gameObject.tag == "EnemyCar" && !canDie)
 			{
 				Destroy (col);
 			}
@@ -151,12 +140,12 @@
 		}
 
 
-	    public override void MoveForward()
+	    public void MoveForward()
 	    {
 			this.Position = new Vector3 (this.Position.x, this.Position.y, this.Position.z + this.Speed);
 	    }
 
-		public override void MoveLeft()
+		public void MoveLeft()
 		{
 			if (this.PositionOnRoad > 0) 
 			{
@@ -164,9 +153,9 @@
 				this.PositionOnRoad--;
 			}
 
-	}
+		}
 
-		public override void MoveRight()
+		public void MoveRight()
 		{
 			if (this.PositionOnRoad < 2) 
 			{
