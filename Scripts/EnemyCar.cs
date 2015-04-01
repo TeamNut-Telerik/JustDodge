@@ -2,8 +2,11 @@
 {
 	using UnityEngine;
 	using System.Collections;
+    using Assets.Scripts;
+    using Assets.Scripts.Enumerations;
+
 	
-	public class EnemyCar : MonoBehaviour
+	public class EnemyCar : Vehicle
 	{
 		private int sizeOfPlayerCar;
 		private bool regulateCarsCount = true;
@@ -23,6 +26,12 @@
 			get {return this.speed;}
 			set {this.speed = value;}
 		}
+
+        public EnemyCar(EManufacturer manufacturer, float maxSpeed, float price, EColor color):
+            base(manufacturer,maxSpeed,price,color)
+        {
+
+        }
 		// Use this for initialization
 		void Start () 
 		{
