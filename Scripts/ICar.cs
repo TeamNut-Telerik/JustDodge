@@ -4,7 +4,10 @@ namespace Dodge
 
 	public interface ICar
 	{
-		float Speed {get;}
+        string Manufacturer { get; }
+        string Color { get; }
+        float MaxSpeed { get; }
+        float Price { get;  }
 		Vector3 Position { get; }
 
 		void MoveForward();
