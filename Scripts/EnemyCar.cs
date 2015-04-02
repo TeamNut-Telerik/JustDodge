@@ -9,7 +9,7 @@
 	public class EnemyCar : Vehicle
 	{
 		private int sizeOfPlayerCar;
-		private bool regulateCarsCount = true;
+		private bool regulateCarsCount;
 
 		private float minimalSpeed;
 		private float maximumSpeed;
@@ -36,6 +36,7 @@
 		void Start () 
 		{
 			this.car = this.gameObject;
+            this.regulateCarsCount = true;
 			this.player = GameObject.Find ("Player");
 			this.script = this.player.GetComponent<GenerateEnemyCars> ();
 			this.sizeOfPlayerCar = 6;

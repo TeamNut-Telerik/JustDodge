@@ -73,6 +73,7 @@
 		void Start () 
 	    {
             this.Position = gameObject.transform.position;
+            this.PositionOnRoad = 1;
 			this.minSpeed = 0.5f;
 			this.Speed = this.minSpeed;
 			this.maxSpeed = 1.3f;
