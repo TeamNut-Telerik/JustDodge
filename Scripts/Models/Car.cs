@@ -5,13 +5,14 @@
     using Assets.Scripts;
     using Assets.Scripts.Enumerations;
     using Assets.Scripts.Generatables;
+    using Assets.Scripts.Common;
     using Assets.Interfaces;
     using UnityEngine;
 
 	public class Car : Vehicle , ICar
 	{
 		// This variable declares how much distance will the car move left or right
-		private static float MoveLengthByX = 6.0f;
+		private static float MoveLengthByX = 5.5f;
 		private const float acceleration = 0.02f;
 
 		// This variable helps us move the car properly so it doesnt get out of the road
@@ -150,9 +151,13 @@
 		{
 			if (this.PositionOnRoad > 0) 
 			{
-				this.Position = new Vector3 (this.Position.x - MoveLengthByX, this.Position.y, this.Position.z);
-				this.PositionOnRoad--;
+                this.Position = new Vector3(this.Position.x - MoveLengthByX, this.Position.y, this.Position.z);
+                this.PositionOnRoad--;
 			}
+            else
+            {
+                throw new OutOfRoadException("Car cannot go out of road!");
+            }
         }
 
         public void MoveRight()

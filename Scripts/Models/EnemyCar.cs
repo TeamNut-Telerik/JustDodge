@@ -5,7 +5,7 @@
     using Assets.Scripts.Enumerations;
     using Assets.Scripts.Generatables;
 
-	public class EnemyCar : Vehicle
+	public abstract class EnemyCar : Vehicle
 	{
 		private int sizeOfPlayerCar;
 		private bool regulateCarsCount;
