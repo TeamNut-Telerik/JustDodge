@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Assets.Scripts.Common
 {
-    class CarOverflowException:Exception
+    using System;
+    class CarOverflowException:ApplicationException
     {
+        private readonly int maxCarOnRoad = 25;
+
         public CarOverflowException(string message)
         : base(message)
         {
+        }
+
+        public int MaxCarOnRoad
+        {
+            get { return this.maxCarOnRoad; }
         }
     }
 }

@@ -1,15 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Assets.Scripts.Common
+﻿namespace Assets.Scripts.Common
 {
-    class OutOfRoadException:Exception
+    using System;
+    class OutOfRoadException:ApplicationException
     {
+        private readonly int minCarPosition = 0;
+        public readonly int maxCarPosition = 2;
+        
         public OutOfRoadException(string message)
         : base(message)
         {
+        }
+
+        public int MinCarPosition
+        {
+            get { return this.minCarPosition; }
+        }
+
+        public int MaxCarPosition
+        {
+            get { return this.maxCarPosition; }
         }
     }
 }
