@@ -113,6 +113,7 @@
 				this.timeUndead += Time.deltaTime;
 				if (this.timeUndead > this.maximumTimeUndead) 
 				{
+                    this.timeUndead = 0;
 					this.canDie = true;
 				}
 			}
