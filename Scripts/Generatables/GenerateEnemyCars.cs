@@ -1,6 +1,8 @@
-namespace Dodge
+namespace Assets.Scripts.Generatables
 {
-	using UnityEngine;
+    using Assets.Interfaces;
+    using Assets.Scripts.Models;
+    using UnityEngine;
 
 	public class GenerateEnemyCars : MonoBehaviour,  IGeneratable
 	{
@@ -14,7 +16,6 @@ namespace Dodge
 		private GameObject enemyCar;
 
 		private Transform carTransform;
-		private EnemyCar car;
 
 		public Transform prefab;
 
@@ -47,7 +48,7 @@ namespace Dodge
 		{
 			this.carTransform = (Transform)Instantiate(prefab, position, Quaternion.identity);
 			this.enemyCar = this.carTransform.gameObject;
-			this.car = this.enemyCar.AddComponent<EnemyCar> ();
+			this.enemyCar.AddComponent<EnemyCar> ();
 		}
 
 	}

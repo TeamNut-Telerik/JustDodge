@@ -1,8 +1,9 @@
-﻿namespace Dodge
+﻿namespace Assets.Scripts.Generatables
 {
 	using UnityEngine;
 	using System.Collections;
 	using System;
+    using Assets.Interfaces;
 
 	public class GenerateBasicArea : MonoBehaviour , IGeneratable
 	{

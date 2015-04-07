@@ -1,7 +1,8 @@
-﻿namespace Dodge
+﻿namespace Assets.Scripts.Generatables
 {
 	using UnityEngine;
 	using System.Collections;
+    using Assets.Interfaces;
 	
 	public class GenerateCoins : MonoBehaviour , IGeneratable
 	{
@@ -12,9 +13,6 @@
 		private int coinsCount;
 
 		private GameObject player;
-		private GameObject coins;
-
-		private Transform coinsTransform;
 
 		public Transform coinsPrefab;
 
@@ -58,8 +56,8 @@
 
 		public void Generate(Transform prefab, Vector3 position)
 		{
-			this.coinsTransform = (Transform)Instantiate (prefab, position, Quaternion.identity);
-			this.coins = coinsTransform.gameObject;
+			//this.coinsTransform = (Transform)   coinsTransform is field of type Transform
+            Instantiate (prefab, position, Quaternion.identity);
 		}
 	}
 }
