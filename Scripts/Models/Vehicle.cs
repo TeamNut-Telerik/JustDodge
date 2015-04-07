@@ -29,7 +29,7 @@
         public EManufacturer Manufacturer
         {
             get { return this.manufacturer; }
-            private set { this.manufacturer = value; }
+            set { this.manufacturer = value; }
         }
 
         public Vector3 Position { get; set; }
@@ -37,7 +37,7 @@
         public float MaxSpeed 
         {
             get { return this.maxSpeed; }
-            private set
+            set
             {
                 if (value < 10 || value > 400)
                 {
@@ -50,7 +50,7 @@
         public float Price
         {
             get { return this.price; }
-            private set
+            set
             {
                 if (value < 500)
                 {
@@ -63,7 +63,7 @@
         public EColor Color
         {
             get { return this.color; }
-            private set { this.color = value; }
+            set { this.color = value; }
         }
         #endregion
     }

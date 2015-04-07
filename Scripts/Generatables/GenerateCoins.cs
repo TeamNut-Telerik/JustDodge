@@ -6,8 +6,8 @@
 	
 	public class GenerateCoins : MonoBehaviour , IGeneratable
 	{
-		private const float midLaneX = 0.9f;
-		private const float MoveLengthByX = 6f;
+		private const float midLaneX = 0.6f;
+		private const float MoveLengthByX = 5f;
 
 		private int coinsPicked;
 		private int coinsCount;
@@ -44,7 +44,7 @@
 				Generate (coinsPrefab, new Vector3
 				         (midLaneX + Random.Range(-1,2) * MoveLengthByX,
 				 		  this.player.transform.position.y,
-				 		  this.player.transform.position.z + Random.Range(75,450)));
+				 		  this.player.transform.position.z + Random.Range(75,350)));
 
 				this.coinsCount += 6;
 			}

@@ -6,7 +6,7 @@ namespace Assets.Scripts.Generatables
 
 	public class GenerateEnemyCars : MonoBehaviour,  IGeneratable
 	{
-		private const float MoveLengthByX = 6.0f;
+		private const float MoveLengthByX = 5.5f;
 		private const float midLaneX = -0.5f;
 
 		private int carsCount;
@@ -18,6 +18,8 @@ namespace Assets.Scripts.Generatables
 		private Transform carTransform;
 
 		public Transform prefab;
+        public Transform prefabBus;
+        public Transform prefabAmbulance;
 
 		public int CarsCount
 		{
@@ -36,11 +38,32 @@ namespace Assets.Scripts.Generatables
 		{
 			if (this.carsCount < 6)
 			{
-				Generate (this.prefab, new Vector3 
-				          (midLaneX + Random.Range(-1,2) * MoveLengthByX,
-				 		  this.player.transform.position.y,
-				 		  this.transform.position.z + distanceBetweenCars * (carsCount+1) ));
-				this.carsCount++;
+                int random = Random.Range(0, 13);
+
+                if(random <= 5)
+                {
+                    Generate(this.prefabBus, new Vector3
+                          ((midLaneX - 0.3f) + Random.Range(-1, 2) * MoveLengthByX,
+                          this.player.transform.position.y - 0.8f,
+                          this.transform.position.z + distanceBetweenCars * (carsCount + 1)));
+                    this.carsCount++;
+                }
+                else if(random > 5 && random <= 10 )
+                {
+                    Generate(this.prefab, new Vector3
+                          ((midLaneX - 0.2f) + Random.Range(-1, 2) * MoveLengthByX,
+                          this.player.transform.position.y + 0.2f,
+                          this.transform.position.z + distanceBetweenCars * (carsCount + 1)));
+                    this.carsCount++;
+                }
+                else
+                {
+                    Generate(this.prefabAmbulance, new Vector3
+                          ((midLaneX - 0.2f) + Random.Range(-1, 2) * MoveLengthByX,
+                          this.player.transform.position.y + 0.6f,
+                          this.transform.position.z + distanceBetweenCars * (carsCount + 1)));
+                    this.carsCount++;
+                }
 			}
 		}
 
@@ -48,7 +71,18 @@ namespace Assets.Scripts.Generatables
 		{
 			this.carTransform = (Transform)Instantiate(prefab, position, Quaternion.identity);
 			this.enemyCar = this.carTransform.gameObject;
-			this.enemyCar.AddComponent<EnemyCar> ();
+            if (this.prefab == prefabBus)
+            {
+                this.enemyCar.AddComponent<Bus>();
+            }
+            else if (this.prefab == prefabAmbulance)
+            {
+                this.enemyCar.AddComponent<Ambulance>();
+            }
+            else
+            {
+                this.enemyCar.AddComponent<Automobile>();
+            }
 		}
 
 	}

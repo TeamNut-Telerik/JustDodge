@@ -41,7 +41,8 @@
 			this.sizeOfPlayerCar = 6;
 			this.minimalSpeed = 0.3f;
 			this.maximumSpeed = 0.7f;
-			this.Speed = Random.Range(this.minimalSpeed, this.maximumSpeed);
+			//this.Speed = Random.Range(this.minimalSpeed, this.maximumSpeed);
+            this.Speed = 0.5f;
 
 			//this.randomMaterial = new Material (Shader.Find ("Standard"));
 			//this.randomMaterial.color = new Color(Random.Range (0,255),Random.Range (0,255),Random.Range (0,255),1);

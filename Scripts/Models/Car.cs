@@ -154,7 +154,7 @@
                 this.Position = new Vector3(this.Position.x - MoveLengthByX, this.Position.y, this.Position.z);
                 this.PositionOnRoad--;
 			}
-            else
+            else if (this.PositionOnRoad < 0)
             {
                 throw new OutOfRoadException("Car cannot go out of road!");
             }

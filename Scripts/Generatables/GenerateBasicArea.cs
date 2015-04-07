@@ -10,7 +10,7 @@
 		private const float firstBasicAreaX = 8f;
 		private const float firstBasicAreaY = 0.44f;
 		private const float firstBasicAreaZ = 32f;
-		private const float areaAvailabilityTime = 25f;
+		private const float areaAvailabilityTime = 30f;
 
 		private GameObject area;
 		private GameObject player;
