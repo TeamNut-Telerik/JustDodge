@@ -12,6 +12,5 @@ namespace Assets.Scripts.Enumerations
         Black,
         Blue,
         Grey
-        
     }
 }
